@@ -1,0 +1,19 @@
+version: '3'
+services:
+  web:
+    build:
+      context: . #Specifies the directory to use when building this image
+      dockerfile: Dockerfile.dev #Points to the name of the dockerfile to use in building the image
+    ports:
+      - "3001:3000"
+    volumes:
+      - '/app/node_modules' #Dont try mapping anything to this folder in the docker container.
+      - '.:/app' # Map the current directory to the app folder in the docker container
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - '/app/node_modules'
+      - '.:/app'
+    command: ["npm","run","test"]

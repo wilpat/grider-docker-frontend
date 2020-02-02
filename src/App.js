@@ -16,7 +16,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn
         </a>
       </header>
     </div>
@@ -24,3 +24,17 @@ function App() {
 }
 
 export default App;
+
+fetch('https://backend.ladder.io/rest/widgets?container_id=e81f3f32d4e64488203d837d&container_type=plan', {
+  headers: new Headers({
+    'Connection': 'keep-alive',
+    'Accept':'application/json',
+    'Content-Type':'application/json',
+    'Authorization':'Bearer 086361465c76ad4faeb9d9d6da21c70745de42efeb2e7b9db279baa6b3662b2c4080507a0c1af121e5bd833e8bfb6436'
+  })
+})
+.then(response => response.json())
+.then(data => {
+  console.log(data)
+})
+.catch(error => console.error(error))
