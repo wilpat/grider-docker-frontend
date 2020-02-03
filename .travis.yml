@@ -11,4 +11,4 @@ before_install: #Things to do with your code on travis ci before running tests o
     - docker build -t wilpat/grider-docker-frontend -f Dockerfile.dev . #Used the .dev dockerfile cos we need to run the tests in travis ci and the test image is in that .dev file
 
 script:     
-    - docker run wilpat/grider-docker-frontend npm run test -- --coverage
+    - docker run wilpat/grider-docker-frontend npm run test -- --watchAll=false
