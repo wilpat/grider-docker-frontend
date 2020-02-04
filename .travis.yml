@@ -12,3 +12,16 @@ before_install: #Things to do with your code on travis ci before running tests o
 
 script:     
     - docker run -e CI=true wilpat/grider-docker-frontend npm run test -- --coverage
+
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-2" #region you selected when creating the elb application
+    app: "grider-docker-frontend" #the aws elb app name
+    env: "GriderDockerFrontend-env" #the aws elb app environment
+    bucket_name: "elasticbeanstalk-us-east-2-319705608718" #s3 storage location for all apps deployed to this region
+    bucket_path: "grider-docker-frontend" #name of the folder where this app you're targeting is located or going to exist
+    on:
+        branch: master #Only deploy when master branch is updated
+    access_key_id: $AWS_ACCESS_KEY #Environment variable stored in travis ci
+    secret_access_key:
+        secure: "$AWS_SECRET_KEY"
