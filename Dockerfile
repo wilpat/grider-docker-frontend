@@ -12,7 +12,7 @@ RUN npm run build
 
 FROM nginx
 EXPOSE 80 
-#Nginx runs on port 80
+#Nginx runs on port 80, so elastic beanstalk uses the expose command to expose this port
 COPY --from=builder /app/build /usr/share/nginx/html
 
 #No need to specify a command to start nginx as it gets started by default when a container with the image starts
