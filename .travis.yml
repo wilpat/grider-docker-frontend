@@ -13,7 +13,7 @@ before_install: #Things to do with your code on travis ci before running tests o
 script:     
     - docker run -e CI=true wilpat/grider-docker-frontend npm run test -- --coverage
 
-deploy:
+deploy: #This deploys the whole folder onto elb so it's the production Dockerfile that would be used by elb to startup this app
     provider: elasticbeanstalk
     region: "us-east-2" #region you selected when creating the elb application
     app: "grider-docker-frontend" #the aws elb app name
